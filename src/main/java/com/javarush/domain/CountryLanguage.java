@@ -6,7 +6,7 @@ import org.hibernate.annotations.Type;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "country_language")
+@Table(name = "country_language", schema = "world")
 public class CountryLanguage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,8 +14,6 @@ public class CountryLanguage {
 
     private String language;
 
-// проверить будет ли булево поле маппиться без указания типа hibernate
-//    @Column(name = "is_official")
     @Column(name = "is_official", columnDefinition = "BIT")
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private Boolean isOfficial;

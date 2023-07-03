@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
-@Table(name = "country")
+@Table(name = "country", schema = "world")
 public class Country {
     @Id
     private Integer id;
@@ -52,9 +52,7 @@ public class Country {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "capital")
     private City city;
-// способ связи между Country и CountryLanguage через mappedBy
-//    @OneToMany(mappedBy = "country",
-//            fetch = FetchType.EAGER)
+
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "country_id")
     private Set<CountryLanguage> languages;

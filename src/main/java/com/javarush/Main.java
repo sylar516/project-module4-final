@@ -46,10 +46,7 @@ public class Main {
 
     public static void main(String[] args) {
         Main main = new Main();
-//        Session session = main.sessionFactory.getCurrentSession();
-//        session.beginTransaction();
-//        City byId = main.cityDAO.getById(3);
-//        session.getTransaction().commit();
+
         List<City> allCities = main.fetchData(main);
         List<CityCountry> preparedData = main.transformData(allCities);
         main.pushToRedis(preparedData);
@@ -58,7 +55,7 @@ public class Main {
         main.sessionFactory.getCurrentSession().close();
 
         //выбираем случайных 10 id городов
-        //так как мы не делали обработку невалидных ситуаций, используй существующие в БД id
+        //убрать жёсткое кодирование идентификаторов городов и добавить логику случайной выборки городов
         List<Integer> ids = List.of(3, 2545, 123, 4, 189, 89, 3458, 1189, 10, 102);
 
         long startRedis = System.currentTimeMillis();
@@ -69,6 +66,7 @@ public class Main {
         main.testMysqlData(ids);
         long stopMysql = System.currentTimeMillis();
 
+        //Выводим скорость получения одних и тех же данных из MySQL и Redis для сравнения
         System.out.printf("%s:\t%d ms\n", "Redis", (stopRedis - startRedis));
         System.out.printf("%s:\t%d ms\n", "MySQL", (stopMysql - startMysql));
 

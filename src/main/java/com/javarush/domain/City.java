@@ -3,7 +3,7 @@ package com.javarush.domain;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "city")
+@Table(name = "city", schema = "world")
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
