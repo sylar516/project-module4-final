@@ -55,7 +55,6 @@ public class Main {
         main.sessionFactory.getCurrentSession().close();
 
         //выбираем случайных 10 id городов
-        //убрать жёсткое кодирование идентификаторов городов и добавить логику случайной выборки городов
         List<Integer> ids = List.of(3, 2545, 123, 4, 189, 89, 3458, 1189, 10, 102);
 
         long startRedis = System.currentTimeMillis();
